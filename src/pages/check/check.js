@@ -1,10 +1,9 @@
-import { useState } from 'react';
+
 import './check.module.css';
 
 
 export const Check = ({selectedData}) => {
     
-    // const total = items.reduce((sum, item) => sum + item.price, 0);
 
 
     return (
@@ -18,13 +17,15 @@ export const Check = ({selectedData}) => {
                 </tr>
             </thead>
             <tbody>
-                {selectedData.map((item) => (
-                    <tr key={item.id}>
+                {selectedData.map((item, index) => (
+                    <tr key={index}>
+                        <td>{index +1}</td>
+                        <td>{item.name}</td>
                         <td>{item.name}</td>
                         <td>{item.price}</td>
                     </tr>
                 ))}
             </tbody>
-        </table>
+    </table>
     )
 }

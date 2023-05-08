@@ -2,11 +2,11 @@
 import './ingredients.module.css';
 import '../../components/buttons/buttons';
 import { Button } from '../../components/buttons/buttons';
-import { useState } from 'react';
 
 
-export const Ingredients = ({items, onButtonClick}) => {
-    
+
+export const Ingredients = (props) => {
+    const {items, onButtonClick} = props;
     return (
         <table className ="table table-warning table-hover">
             <thead>
@@ -17,11 +17,11 @@ export const Ingredients = ({items, onButtonClick}) => {
                 </tr>
             </thead>
             <tbody className="table-group-divider">
-                {items.map((item) => (
-                    <tr key={item.id}>
+                {items.map((item, index) => (
+                    <tr key={index}>
                         <td>{item.name}</td>
                         <td>{item.price} UAH</td>
-                        <td><Button onClick={()=>onButtonClick}/></td>
+                        <td><Button onClick={()=>onButtonClick(item)}/></td>
                     </tr>
                 ))}
             </tbody>
