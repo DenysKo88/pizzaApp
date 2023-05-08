@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 
 
-const items = [
+const products = [
   {
     name: 'Основа',
     price: 50,
@@ -50,17 +50,31 @@ const items = [
 ]
 
 function App() {
-  const [selectedData, setSelectedData] = useState([]);
+    
+    const [cart, setCart] = useState([]);
 
-  function handleButtonClick(item) {
-    setSelectedData([...selectedData, item])
-  }
+    const addProduct = (product) => {
+        const existingProduct = cart.find((item) => item.id === product.id);
+
+        if (existingProduct) {
+            const updatedCart = cart.map((item) =>
+            item.id === product.id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+            );
+            setCart(updatedCart);
+        } else {
+            const newProduct = { ...product, quantity: 1 };
+            setCart([...cart, newProduct]);
+        }
+    }
+
   return (
     <div className="App">
       <h2 className="App-title">Конструктор піци</h2>
       <div className="table-wrapper">
-         <Ingredients items={items} onButtonClick={handleButtonClick}/>
-         <Check selectedData={selectedData}/>
+        <Ingredients products={products} onButtonClick={addProduct} />
+        <Check cart={cart}/>
       </div>
     </div>
   );
