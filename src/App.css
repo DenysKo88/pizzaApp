@@ -13,7 +13,10 @@
   justify-content: space-between;
   gap: 10%;
 }
-
+.btn.btn-primary{
+  margin-top: 20px;
+  
+}
 
 
 

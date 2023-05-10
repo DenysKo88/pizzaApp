@@ -1,10 +1,9 @@
 
 import './check.module.css';
-// import { Button } from '../../components/buttons/buttons';
 import { RemoveBtn} from '../../components/buttons/removeBtn';
-export const Check = (props) => {
-    const {cart, onButtonClick, getTotalPrice} = props;
 
+export const Check = (props) => {
+    const { cart, onButtonClick, getTotalPrice, handleConfirmPayment } = props;
 
     return (
       <table className="table table-success table-hover">
@@ -29,7 +28,13 @@ export const Check = (props) => {
               </td>
             </tr>
           ))}
-          <tr>${getTotalPrice()}</tr>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={handleConfirmPayment}
+          >
+            Замовити {getTotalPrice()} UAH
+          </button>
         </tbody>
       </table>
     );

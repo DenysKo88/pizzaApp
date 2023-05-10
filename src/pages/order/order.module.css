@@ -1,0 +1,28 @@
+.order {
+    margin: 0 auto;
+    padding: 20px;
+    display: block;
+    width: 350px;
+    min-height: 440px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1)
+}
+.order_img {
+    width: 100%
+}
+.order_title {
+    margin-top: 10px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+}
+.order_content {
+    margin-top: 15px;
+    
+}
+.order_item {
+    text-align: left;
+    padding: 0;
+}
+

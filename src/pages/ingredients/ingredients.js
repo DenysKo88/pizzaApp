@@ -7,6 +7,7 @@ import { Button } from '../../components/buttons/buttons';
 
 export const Ingredients = (props) => {
     const {products, onButtonClick} = props;
+    
     return (
       <table className="table table-warning table-hover">
         <thead>
