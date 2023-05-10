@@ -1,6 +1,7 @@
 .App {
   padding: 50px 100px;
   text-align: center;
+  background: url('../public/pizza_bg.png') no-repeat center center/cover;
 }
 .App-title  {
   font-size: 36px;
