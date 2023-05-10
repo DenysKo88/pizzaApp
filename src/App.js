@@ -69,12 +69,37 @@ function App() {
         }
     }
 
+
+
+    const removeProduct = (product) => {
+      const existingProduct = cart.find((item) => item.id === product.id);
+
+        if (existingProduct) {
+          const updatedCart = cart.map((item) =>
+            item.id === product.id
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          );
+          setCart(updatedCart);
+        }
+         if(product.quantity === 1){
+          setCart([])
+         }
+    };
+
+    const getTotalPrice = () => {
+      return cart.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      );
+    };
+
   return (
     <div className="App">
       <h2 className="App-title">Конструктор піци</h2>
       <div className="table-wrapper">
         <Ingredients products={products} onButtonClick={addProduct} />
-        <Check cart={cart}/>
+        <Check cart={cart} onButtonClick={removeProduct} getTotalPrice={getTotalPrice}/>
       </div>
     </div>
   );

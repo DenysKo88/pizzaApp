@@ -12,7 +12,7 @@ export const Ingredients = (props) => {
         <thead>
           <tr>
             <th scope="col">Інгредієнт</th>
-            <th scope="col">Ціна</th>
+            <th scope="col">Вартість</th>
             <th scope="col"></th>
           </tr>
         </thead>
