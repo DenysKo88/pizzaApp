@@ -1,5 +1,5 @@
 
-import './ingredients.module.css';
+import './ingredients.module.scss';
 import '../../components/buttons/buttons';
 import { Button } from '../../components/buttons/buttons';
 
@@ -7,7 +7,7 @@ import { Button } from '../../components/buttons/buttons';
 
 export const Ingredients = (props) => {
     const {products, onButtonClick} = props;
-    
+    const filteredIngredients = products.filter(product => product.id !==1);
     return (
       <table className="table table-warning table-hover">
         <thead>
@@ -18,12 +18,16 @@ export const Ingredients = (props) => {
           </tr>
         </thead>
         <tbody className="table-group-divider">
-          {products.map((product) => (
+          {filteredIngredients.map((product) => (
             <tr key={product.id}>
               <td>{product.name}</td>
               <td>{product.price} UAH</td>
               <td>
-                <Button onClick={() => onButtonClick(product)} />
+                <Button
+                  text={"Add"}
+                  onClick={() => onButtonClick(product)}
+                  variant="outline-success"
+                />
               </td>
             </tr>
           ))}

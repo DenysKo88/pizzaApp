@@ -1,9 +1,7 @@
 
-import './check.module.css';
-import { RemoveBtn} from '../../components/buttons/removeBtn';
+import { Button } from '../../components/buttons/buttons';
 
-export const Check = (props) => {
-    const { cart, onButtonClick, getTotalPrice, handleConfirmPayment } = props;
+export const Check = ({ cart, onButtonClick, getTotalPrice, handleConfirmPayment }) => {
 
     return (
       <table className="table table-success table-hover">
@@ -24,17 +22,21 @@ export const Check = (props) => {
               <td>{product.quantity}</td>
               <td>{product.price * product.quantity}</td>
               <td>
-                <RemoveBtn onClick={() => onButtonClick(product)} />
+                {product.id !== 1 && (
+                  <Button
+                    text={"-"}
+                    variant="outline-danger"
+                    onClick={() => onButtonClick(product)}
+                  />
+                )}
               </td>
             </tr>
           ))}
-          <button
-            type="button"
-            className="btn btn-primary"
+          <Button
+            variant="btn btn-primary"
             onClick={handleConfirmPayment}
-          >
-            Замовити {getTotalPrice()} UAH
-          </button>
+            text={`Замовити ${getTotalPrice()} UAH`}
+          ></Button>
         </tbody>
       </table>
     );

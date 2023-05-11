@@ -1,11 +1,13 @@
-import styles from './order.module.css';
+import { Button } from '../../components/buttons/buttons';
+import styles from './order.module.scss';
+import pizza from './pizza.jpg';
 
 
 export const Order = (props) => {
     const {getTotalPrice, cart, handleConfirm} = props;
     return (
       <div className={styles.order}>
-        <img src="pizza.jpg" alt="pizza" className={styles.order_img} />
+        <img src={pizza} alt="pizza" className={styles.order_img} />
         <div className={styles.order_title}>Ваша піца: {getTotalPrice} UAH</div>
         <ul className={styles.order_content}>
           {cart.map((product) => (
@@ -14,9 +16,7 @@ export const Order = (props) => {
             </li>
           ))}
         </ul>
-        <button type="button" className="btn btn-primary" onClick={handleConfirm}>
-          Go!
-        </button>
+        <Button variant=" btn btn-primary" onClick={handleConfirm} text="Go!" />
       </div>
     );
 }
