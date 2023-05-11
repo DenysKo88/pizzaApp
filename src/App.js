@@ -59,11 +59,17 @@ const products = [
   },
 ];
 
+const baseItem = {
+    name: "Основа",
+    price: 50,
+    id: 1,
+    quantity: 1,
+};
+
 function App() {
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState([baseItem]);
     const [showThanks, setShowThanks] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
-
 
 
     const addProduct = (product) => {
