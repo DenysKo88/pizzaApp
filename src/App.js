@@ -1,10 +1,14 @@
 import './App.scss';
 import './pages/ingredients/ingredients';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Ingredients } from './pages/ingredients/ingredients';
 import { Check } from './pages/check/check';
 import { Order } from './pages/order/order';
 import { Thanks } from './pages/thanks/thanks';
 import { useState } from "react";
+import { NameForm } from './pages/nameForm/nameForm';
+import { Complaint } from './pages/complaint/complaint';
+import { Info } from './pages/info/info';
 
 
 
@@ -129,20 +133,25 @@ const App = () => {
 
 
   return (
-    <div className="App">
-      <h2 className="App-title">Конструктор піци</h2>
-      <div className="table-wrapper">
-        <Ingredients products={products} onButtonClick={addProduct} />
-        <Check
-          cart={cart}
-          onButtonClick={removeProduct}
-          getTotalPrice={getTotalPrice}
-          handleConfirmPayment={handleConfirmPayment}
-        />
+    <Router>
+      <div className="App">
+        <h2 className="App-title">Конструктор піци</h2>
+        <div className="table-wrapper">
+            <Ingredients products={products} onButtonClick={addProduct} />
+            <Check
+            cart={cart}
+            onButtonClick={removeProduct}
+            getTotalPrice={getTotalPrice}
+            handleConfirmPayment={handleConfirmPayment}
+            />
+        </div>
+        <NameForm/>
+        <Complaint/>
+        <Info/>
+        {/* <Order getTotalPrice={getTotalPrice()} cart={cart} handleConfirm={handleConfirm} /> */}
+        {/* <Thanks /> */}
       </div>
-      {/* <Order getTotalPrice={getTotalPrice()} cart={cart} handleConfirm={handleConfirm} /> */}
-      {/* <Thanks /> */}
-    </div>
+    </Router>
   );
 }
 

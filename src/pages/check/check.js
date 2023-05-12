@@ -37,6 +37,9 @@ export const Check = ({ cart, onButtonClick, getTotalPrice, handleConfirmPayment
             onClick={handleConfirmPayment}
             text={`Замовити ${getTotalPrice()} UAH`}
           ></Button>
+          <Button 
+            variant="btn btn-danger"
+            text="Problem!"/>
         </tbody>
       </table>
     );

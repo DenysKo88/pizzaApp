@@ -14,8 +14,10 @@
   justify-content: space-between;
   gap: 10%;
 }
-.btn.btn-primary{
+.btn.btn-primary,
+.btn.btn-danger {
   margin-top: 20px;
+  margin-left: 15px;
   
 }
 
