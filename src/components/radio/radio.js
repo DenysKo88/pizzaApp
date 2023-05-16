@@ -1,5 +1,5 @@
 import './radio.module.scss';
-export const RadioForm = ({text}) => {
+export const RadioForm = ({text, onChange, value}) => {
     return (
       <div class="form-check">
         <input
@@ -7,7 +7,8 @@ export const RadioForm = ({text}) => {
           type="radio"
           name="flexRadioDefault"
           id="flexRadioDefault1"
-          checked="checked"
+          value={value}
+          onChange={onChange}
         />
         <label class="form-check-label" for="flexRadioDefault1">
           {text}

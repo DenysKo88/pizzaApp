@@ -1,32 +1,54 @@
 import styles from './info.module.scss';
 import {Button} from './../../components/buttons/buttons'
+import InputMask from 'react-input-mask';
 
-export const Info = () => {
+export const Info = ({value, onChange, onSubmit, password, handlePassChange, handlePhoneChange, phoneNumber, handleShowResults}) => {
+
+
+    const PhoneInput = () => {
+        return (
+          <InputMask
+            type="tel"
+            value={phoneNumber}
+            onChange={handlePhoneChange}
+            className={styles.input}
+            mask="+38 (099) 999-99-99"
+            maskChar="_"
+            placeholder="+38 (___) ___-__-__"
+          />
+        );
+    }
+
     return (
       <div className={styles.info}>
         <h2 className={styles.title}>Тре ще інфа</h2>
-        <input
-          className={styles.input}
-          type="date"
-          placeholder="1988-08-25"
-          name="date"
-        />
-        <input
-          className={styles.input}
-          type="tel"
-          id="phone"
-          name="phone"
-          pattern="+[0-9]{2}([0-9]{3})[0-9]{3}-[0-9]{2}-[0-9]{2}"
-          placeholder="+38(050)555-55-55"
-        />
-        <input
-          className={styles.input}
-          type="email"
-          id="email"
-          name="email"
-          placeholder="mailto@mail.com"
-        />
-        <Button text="Ще чуток" variant="btn btn-warning" />
+        <form onSubmit={onSubmit}>
+          <input
+            value={value}
+            onChange={onChange}
+            className={styles.input}
+            type="date"
+            name="date"
+            required
+            pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"
+          />
+          <PhoneInput
+            // type="tel"
+            // value={phoneNumber}
+            // onChange={handlePhoneChange}
+          />
+          <input
+            // required
+            className={styles.input}
+            value={password}
+            onChange={handlePassChange}
+            type="password"
+            id="password"
+            name="password"
+            placeholder="стоп-слово"
+          />
+          <Button type="submit" text="Ще чуток" variant="btn btn-warning" onClick={handleShowResults} />
+        </form>
       </div>
     );
 }
