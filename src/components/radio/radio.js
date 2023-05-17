@@ -1,4 +1,4 @@
-import './radio.module.scss';
+
 export const RadioForm = ({text, onChange, value}) => {
     return (
       <div class="form-check">

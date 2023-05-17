@@ -8,8 +8,6 @@ import { useState } from "react";
 export const Problem = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    // const [firstNameDirty, setFirstNameDirty] = useState(false);
-    // const [lastNameDirty, setLastNameDirty] = useState(false);
     const [firstNameError, setFirstNameError] = useState("");
     const [lastNameError, setLastNameError] = useState("");
     const [inputText, setInputText] = useState("");
@@ -23,18 +21,9 @@ export const Problem = () => {
     const [showComplaint, setShowComplaint] = useState(false);
     const [showInfo, setShowInfo] = useState(false);
     const [showResults, setShowResults] = useState(false);
-
-    // const blurHandler = (e) => {
-    //   switch (e.target.name) {
-    //     case "firstName":
-    //       setFirstNameDirty(true);
-    //       break;
-    //     case "lastName":
-    //       setLastNameDirty(true);
-    //       break;
-    //     //no default
-    //   }
-    // };
+    const [dateError, setDateError] = useState("");
+    const [phoneError, setPhoneError] = useState("");
+    const [passError, setPassError] = useState("");
 
     const firstNameHandler = (e) => {
       setFirstName(e.target.value);
@@ -43,7 +32,7 @@ export const Problem = () => {
       } else {
         setFirstNameError("");
       }
-    };
+    }
 
     const lastNameHandler = (e) => {
       setLastName(e.target.value);
@@ -52,16 +41,7 @@ export const Problem = () => {
       } else {
         setLastNameError("");
       }
-    };
-
-    // const handleButtonClick = (e) => {
-    //     if (firstName !== "" && lastName !== "") {
-    //         setFirstName("");
-    //         setLastName("");
-    //         setIsGay("");
-    //     }
-    //     e.preventDefault();
-    // };
+    }
 
     //complaint
     const textHandler = (e) => {
@@ -71,42 +51,50 @@ export const Problem = () => {
         } else {
         setTextError("");
         }
-    };
+    }
 
     //radio
     const handleRadioChange = (e) => {
       setIsGay(e.target.value);
-    };
+    }
 
     //revo
     const handleCheckboxChange = (e) => {
         const value = e.target.checked ? 'канєша' : 'я зож';
         setIsRevo(value);
-    };
+    }
 
     //bitrhday
     const handleDateChange = (e) => {
       setBirthday(e.target.value);
-    };
+      setDateError('')
+    }
 
     //phone 
     const handlePhoneChange = (e) => {
       setPhoneNumber(e.target.value);
+      setPhoneError('')
     }
+
     //password
     const handlePassChange = (e) => {
-      setPassword(e.target.value)
+      setPassword(e.target.value);
+      setPassError('')
     }
-  
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    };
+    }
     
     //show Results
     const handleShowResults = () => {
-        setShowResults(true);
+        if(birthday !== "" && phoneNumber !== "" && password !== ""){
+            setShowResults(true);
+        } else {
+            setDateError('Поздравим з др');
+            setPhoneError('Воєнком просив');
+            setPassError('Нам нада знать коли остановиться')
+        }  
     }
 
         //show Info
@@ -116,12 +104,12 @@ export const Problem = () => {
         } else {
             setTextError("Треба щось написати")
         }
-    };
+    }
 
     //show Complaint
     const handleShowComplaint = () => {
         if (firstName !== "" && lastName !== "" && isGay !== "") 
-            {setShowComplaint(true);
+        {setShowComplaint(true);
         } else if ((firstName.length < 3 && firstName.length > 0) && (lastName.length <3 && lastName.length >0)) {
         setFirstNameError("Ім`я повинно бути не менше 3 символів");
         setLastNameError("Призвіще повинно бути не менше 3 символів");
@@ -132,7 +120,7 @@ export const Problem = () => {
         } else if (isGay === ""){
         setIsGayError("Признавайся!")
         }
-    }   
+    }
 
     if(showResults) {
         return (
@@ -159,6 +147,9 @@ export const Problem = () => {
             handlePassChange={handlePassChange}
             handlePhoneChange={handlePhoneChange}
             handleShowResults={handleShowResults}
+            dateError={dateError}
+            phoneError={phoneError}
+            passError={passError}
         />
         );
     }
@@ -177,21 +168,14 @@ export const Problem = () => {
         );
     }
 
-
-    
-
     return (
       <div className="Problem">
         <NameForm
-            // handleButtonClick={handleButtonClick}
             lastNameHandler={lastNameHandler}
             firstNameHandler={firstNameHandler}
-            // blurHandler={blurHandler}
             handleSubmit={handleSubmit}
             firstNameError={firstNameError}
             lastNameError={lastNameError}
-            // firstNameDirty={firstNameDirty}
-            // lastNameDirty={lastNameDirty}
             firstName={firstName}
             lastName={lastName}
             handleRadioChange={handleRadioChange}
@@ -200,7 +184,7 @@ export const Problem = () => {
             handleShowComplaint={handleShowComplaint}
         />
       </div>
-    );
+    )
 }
 
 

@@ -6,7 +6,6 @@ import styles from './nameForm.module.scss';
 
 export const NameForm = ({firstName, lastName, firstNameDirty, lastNameDirty, firstNameError, isGayError, lastNameError, firstNameHandler, lastNameHandler, handleSubmit, blurHandler, handleRadioChange, handleShowComplaint}) => {
 
-    
     return (
       <>
         <div className={styles.nameForm}>
@@ -16,7 +15,6 @@ export const NameForm = ({firstName, lastName, firstNameDirty, lastNameDirty, fi
               <div style={{ color: "red" }}>{firstNameError}</div>
             )}
             <input
-              // onBlur={(e) => blurHandler(e)}
               name="firstName"
               className={styles.input}
               type="text"
@@ -30,7 +28,6 @@ export const NameForm = ({firstName, lastName, firstNameDirty, lastNameDirty, fi
               <div style={{ color: "red" }}>{lastNameError}</div>
             )}
             <input
-              // onBlur={(e) => blurHandler(e)}
               name="lastName"
               className={styles.input}
               type="text"

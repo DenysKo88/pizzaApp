@@ -1,24 +1,25 @@
 import styles from './info.module.scss';
 import {Button} from './../../components/buttons/buttons'
 import InputMask from 'react-input-mask';
+export const Info = ({value, onChange, onSubmit, password, handlePassChange, handlePhoneChange, phoneNumber, handleShowResults, passError, phoneError, dateError}) => {
 
-export const Info = ({value, onChange, onSubmit, password, handlePassChange, handlePhoneChange, phoneNumber, handleShowResults}) => {
 
-
+    
 
     return (
       <div className={styles.info}>
         <h2 className={styles.title}>Тре ще інфа</h2>
         <form className={styles.form} onSubmit={onSubmit}>
+          {dateError && <div style={{ color: "red" }}>{dateError}</div>}
           <input
             value={value}
             onChange={onChange}
             className={styles.input}
             type="date"
             name="date"
-            required
             pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"
           />
+          {phoneError && <div style={{ color: "red" }}>{phoneError}</div>}
           <InputMask
             type="tel"
             value={phoneNumber}
@@ -28,8 +29,8 @@ export const Info = ({value, onChange, onSubmit, password, handlePassChange, han
             maskChar="_"
             placeholder="+38 (___) ___-__-__"
           />
+          {passError && <div style={{ color: "red" }}>{passError}</div>}
           <input
-            required
             className={styles.input}
             value={password}
             onChange={handlePassChange}
