@@ -1,5 +1,6 @@
 
 import { Button } from '../../components/buttons/buttons';
+import { Link } from 'react-router-dom';
 
 export const Check = ({ cart, onButtonClick, getTotalPrice, handleConfirmPayment }) => {
 
@@ -32,15 +33,16 @@ export const Check = ({ cart, onButtonClick, getTotalPrice, handleConfirmPayment
               </td>
             </tr>
           ))}
-          <Button
-            variant="btn btn-primary"
-            onClick={handleConfirmPayment}
-            text={`Замовити ${getTotalPrice()} UAH`}
-          ></Button>
-          <Button 
-            variant="btn btn-danger"
-            text="Problem!"/>
         </tbody>
+        <Button
+          variant="btn btn-primary"
+          onClick={handleConfirmPayment}
+          text={`Замовити ${getTotalPrice()} UAH`}
+        ></Button>
+        <Button
+          variant="btn btn-danger"
+          text={<Link to="/problem">Problem</Link>}
+        />
       </table>
     );
 }

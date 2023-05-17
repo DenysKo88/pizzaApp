@@ -13,3 +13,11 @@
     margin-top: 20px;
     text-align: left;
 }
+a {
+    color: #fff;
+    text-decoration: none;
+    &:hover{
+        color:#fff;
+        background-color: transparent;
+    }
+}

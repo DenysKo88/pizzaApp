@@ -8,13 +8,14 @@ import { useState } from "react";
 export const Problem = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [firstNameDirty, setFirstNameDirty] = useState(false);
-    const [lastNameDirty, setLastNameDirty] = useState(false);
-    const [firstNameError, setFirstNameError] = useState("Тре шось написать!");
-    const [lastNameError, setLastNameError] = useState("Тре шось написать!");
+    // const [firstNameDirty, setFirstNameDirty] = useState(false);
+    // const [lastNameDirty, setLastNameDirty] = useState(false);
+    const [firstNameError, setFirstNameError] = useState("");
+    const [lastNameError, setLastNameError] = useState("");
     const [inputText, setInputText] = useState("");
-    const [textError, setTextError] = useState("Тре шось написать!");
+    const [textError, setTextError] = useState("");
     const [isGay, setIsGay] = useState("");
+    const [isGayError, setIsGayError] = useState("")
     const [isRevo, setIsRevo] = useState("");
     const [birthday, setBirthday] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -23,17 +24,17 @@ export const Problem = () => {
     const [showInfo, setShowInfo] = useState(false);
     const [showResults, setShowResults] = useState(false);
 
-    const blurHandler = (e) => {
-      switch (e.target.name) {
-        case "firstName":
-          setFirstNameDirty(true);
-          break;
-        case "lastName":
-          setLastNameDirty(true);
-          break;
-        //no default
-      }
-    };
+    // const blurHandler = (e) => {
+    //   switch (e.target.name) {
+    //     case "firstName":
+    //       setFirstNameDirty(true);
+    //       break;
+    //     case "lastName":
+    //       setLastNameDirty(true);
+    //       break;
+    //     //no default
+    //   }
+    // };
 
     const firstNameHandler = (e) => {
       setFirstName(e.target.value);
@@ -53,14 +54,14 @@ export const Problem = () => {
       }
     };
 
-    const handleButtonClick = (e) => {
-        if (firstName !== "" && lastName !== "") {
-            setFirstName("");
-            setLastName("");
-            setIsGay("");
-        }
-        e.preventDefault();
-    };
+    // const handleButtonClick = (e) => {
+    //     if (firstName !== "" && lastName !== "") {
+    //         setFirstName("");
+    //         setLastName("");
+    //         setIsGay("");
+    //     }
+    //     e.preventDefault();
+    // };
 
     //complaint
     const textHandler = (e) => {
@@ -83,11 +84,11 @@ export const Problem = () => {
         setIsRevo(value);
     };
 
-    //data
+    //bitrhday
     const handleDateChange = (e) => {
       setBirthday(e.target.value);
-      console.log(birthday)
     };
+
     //phone 
     const handlePhoneChange = (e) => {
       setPhoneNumber(e.target.value);
@@ -110,13 +111,28 @@ export const Problem = () => {
 
         //show Info
     const handleShowInfo = () => {
-        setShowInfo(true);
+        if(inputText !== "" && inputText.length >= 3){
+            setShowInfo(true);
+        } else {
+            setTextError("Треба щось написати")
+        }
     };
 
     //show Complaint
     const handleShowComplaint = () => {
-        setShowComplaint(true);
-    }
+        if (firstName !== "" && lastName !== "" && isGay !== "") 
+            {setShowComplaint(true);
+        } else if ((firstName.length < 3 && firstName.length > 0) && (lastName.length <3 && lastName.length >0)) {
+        setFirstNameError("Ім`я повинно бути не менше 3 символів");
+        setLastNameError("Призвіще повинно бути не менше 3 символів");
+        } else if (firstName === "") {
+        setFirstNameError("Тре шось написать!");
+        } else if (lastName === ""){
+        setLastNameError("Тре шось написать!");
+        } else if (isGay === ""){
+        setIsGayError("Признавайся!")
+        }
+    }   
 
     if(showResults) {
         return (
@@ -167,19 +183,20 @@ export const Problem = () => {
     return (
       <div className="Problem">
         <NameForm
-            handleButtonClick={handleButtonClick}
+            // handleButtonClick={handleButtonClick}
             lastNameHandler={lastNameHandler}
             firstNameHandler={firstNameHandler}
-            blurHandler={blurHandler}
+            // blurHandler={blurHandler}
             handleSubmit={handleSubmit}
             firstNameError={firstNameError}
             lastNameError={lastNameError}
-            firstNameDirty={firstNameDirty}
-            lastNameDirty={lastNameDirty}
+            // firstNameDirty={firstNameDirty}
+            // lastNameDirty={lastNameDirty}
             firstName={firstName}
             lastName={lastName}
             handleRadioChange={handleRadioChange}
             isGay={isGay}
+            isGayError={isGayError}
             handleShowComplaint={handleShowComplaint}
         />
       </div>
